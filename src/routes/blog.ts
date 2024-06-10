@@ -100,3 +100,9 @@ blogrouter.get('/blogs',async (c) => {
         blogs
     });
 })
+
+blogrouter.get("/greet",async (c)=> {
+    return c.json({
+        msg: "Hello"
+    })
+})

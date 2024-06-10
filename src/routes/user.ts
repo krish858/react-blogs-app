@@ -54,6 +54,6 @@ userrouter.post('/signup',async (c) => {
       const jwt = await sign({id: user.id},c.env.JWT_SECRET);
       return c.text(jwt)
     }catch(e){
-      return c.text("User already exsists with this email");
+      return c.text("Something occured");
     }
 })
