@@ -2,7 +2,6 @@ import { Hono } from "hono";
 import { PrismaClient } from '@prisma/client/edge'
 import { withAccelerate } from '@prisma/extension-accelerate'
 import { sign } from 'hono/jwt'
-import { singupInput } from "../types";
 
 
 const userRouter = new Hono<{
@@ -15,11 +14,6 @@ const userRouter = new Hono<{
 userRouter.post('/signup',async (c) => {
     const body = await c.req.json();
     const sucess = singupInput.safeParse(body)
-    if(!sucess.success){
-      return c.json({
-        message : "invalid inputs"
-      })
-    }
     const prisma = new PrismaClient({
       datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate())
