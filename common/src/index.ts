@@ -1,19 +1,19 @@
 import z, { string } from "zod";
 
-export const singupInput = z.object({
+export const SingupInput = z.object({
     username: string().email(),
     password: string().min(8),
     name : string()
 })
 
-export type singupInput = z.infer<typeof singupInput>
+export type singupInput = z.infer<typeof SingupInput>
 
-export const singinInput = z.object({
+export const SinginInput = z.object({
     username: string().email(),
     password: string().min(8)
 })
 
-export type singinInput = z.infer<typeof singinInput>
+export type singinInput = z.infer<typeof SinginInput>
 
 export const createblogInput = z.object({
     title: string(),
@@ -22,13 +22,13 @@ export const createblogInput = z.object({
 
 export type blogInput = z.infer<typeof createblogInput>
 
-export const updateblogInput = z.object({
+export const UpdateblogInput = z.object({
     id: string(),
     title: string(),
     content: string()
 })
 
-export type updateblogInput = z.infer<typeof updateblogInput>
+export type updateblogInput = z.infer<typeof UpdateblogInput>
 
 
 
