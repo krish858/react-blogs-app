@@ -15,8 +15,14 @@ function Signup() {
       password : password,
       name : name
     }
-    const response = await axios.post("http://localhost:8787/api/v1/user/signup",data)
-    console.log(response);
+    const response = await axios.post("https://blog-app.xitashi.workers.dev/api/v1/user/signup",data)
+    if(response.data == "invalid inputs"){
+      alert("invalid inputs")
+    }else{
+      const jwt = response.data;
+      await localStorage.setItem("token",jwt);
+      navigate("/blogs");
+    }
   }
 
   return (

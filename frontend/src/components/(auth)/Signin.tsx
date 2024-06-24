@@ -13,12 +13,21 @@ function Signin() {
       username : username,
       password : password,
     }
-    const response = await axios.post("http://localhost:8787/api/v1/user/signin",data)
-    console.log(response);
+    const response = await axios.post("https://blog-app.xitashi.workers.dev/api/v1/user/signin",data)
+    if(response.data == "invalid inputs"){
+      alert("invalid inputs")
+    }else{
+      console.log("doing")
+      const jwt = response.data;
+      await localStorage.setItem("token",jwt);
+      console.log("done");
+      navigate("/blogs");
+    }
+    
   }
 
   return (
-    <div className="flex flex-col  w-auto p-6 ">
+    <div className="flex flex-col  w-auto p-6">
       <h1 className="text-center font-bold text-3xl">Login to your account</h1>
       <h1 className="text-center text-slate-600">Don't have an account? <span className="cursor-pointer" onClick={()=>{navigate("/signup")}}>Signup</span></h1>
       <br />
